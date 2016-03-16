@@ -1,7 +1,9 @@
-## Put comments here that give an overall description of what your
-## functions do
+## Underlying are a couple of functions that cache the inverse of a matrix.
+## Here the functions combine to compute a inverse if a matrix ut before reversing, it checks
+## if the cache already holds the required inverse of the gien matrix.
+## Also, the code is based on the assumption that the matrix supplied is always invertible.
 
-## Write a short comment describing this function
+## Creates cache object for the inverse of a invertible matrix.
 
 makeCacheMatrix <- function(x = matrix()) {
   cacheInvMatrix <- NULL
@@ -19,11 +21,12 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## Write a short comment describing this function
+## Checks if the cache of inverse of given matrix exists
+## Returns the inverse of a given invertible matrix 
 
 cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
-invFunc <- x$getInverse()
+  
+  invFunc <- x$getInverse()
   if(!is.null(invFunc)) {
     message("<< cached data >>")
     return(invFunc)
@@ -31,5 +34,5 @@ invFunc <- x$getInverse()
   data <- x$get()
   invFunc <- solve(data, ...)
   x$setInverse(invFunc)
-  invFunc		
+  invFunc
 }
